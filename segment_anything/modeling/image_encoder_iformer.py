@@ -192,7 +192,7 @@ class Block(nn.Module):
         else:
             self.high_mixer_lamb = HighMixer(high_dim)
         self.conv_fuse_lamb = nn.Conv2d(low_dim + high_dim * 2, low_dim + high_dim * 2, kernel_size=3, stride=1,
-                                        padding=1, bias=False, groups=low_dim + high_dim * 2)  # 卷积操作也可以修改
+                                        padding=1, bias=False, groups=low_dim + high_dim * 2)
         self.proj_lamb = nn.Conv2d(low_dim + high_dim * 2, dim, kernel_size=1, stride=1, padding=0)
 
     def forward(self, x: torch.Tensor) -> torch.Tensor:
@@ -203,7 +203,7 @@ class Block(nn.Module):
             H, W = x.shape[1], x.shape[2]
             x, pad_hw = window_partition(x, self.window_size)  # [B * num_windows, window_size, window_size, C]
 
-        hx = x[:, :, :, :self.high_dim].contiguous()  # 高频信息应提取未经attn前的x
+        hx = x[:, :, :, :self.high_dim].contiguous()
 
         x, attn = self.attn(x)
 
@@ -325,13 +325,13 @@ class HighMixer(nn.Module):
 
         # 3 3DWC
         cx = x[:, :self.cnn_in, :, :].contiguous()
-        cx = self.conv1(cx)  # 只改变通道
-        cx = self.proj1(cx)  # 通道、尺寸均未发生变化(3 3卷积，padding)
+        cx = self.conv1(cx)
+        cx = self.proj1(cx)
         cx = self.mid_gelu1(cx)
 
         px = x[:, self.cnn_in:, :, :].contiguous()
         px = self.Maxpool(px)
-        px = self.proj2(px)  # 只改变通道
+        px = self.proj2(px)
         px = self.mid_gelu2(px)
 
         hx = torch.cat((cx, px), dim=1)

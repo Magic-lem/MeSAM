@@ -140,10 +140,9 @@ class MaskDecoderHQ(nn.Module):
             hq_features=hq_features,
         )
 
-        # # 按照dim=1归一化masks
         # mean = masks.mean(dim=(2, 3), keepdim=True)
         # std = masks.std(dim=(2, 3), keepdim=True)
-        # normalized_masks = (masks - mean) / (std + 1e-6)  # 添加小的常数以避免除以零
+        # normalized_masks = (masks - mean) / (std + 1e-6)
 
         # Select the correct mask or masks for output
         if multimask_output:
@@ -165,7 +164,6 @@ class MaskDecoderHQ(nn.Module):
         if hq_token_only:
             masks_new = masks_hq
         else:
-            # 保证尺度一致
             scale_factor = masks_sam.mean() / masks_hq.mean()
             masks_hq = masks_hq * scale_factor
             # masks_new = (1 - self.weight_lamb) * masks_sam + self.weight_lamb * masks_hq
