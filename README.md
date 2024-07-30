@@ -24,12 +24,6 @@ conda activate MeSAM
 pip install -r requirements.txt
 ```
 
-## Training
-We use 1 RTX 3090 GPU for training. Run this command to train MeSAM.
-```bash
-python train.py --root_path <Your folder> --output <Your output path> --warmup --AdamW 
-```
-Check the results in `<Your output path>`.
 
 ## License
 This work is licensed under MIT license. See the [LICENSE](LICENSE) for details.
