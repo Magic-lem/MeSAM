@@ -8,7 +8,8 @@ Segment anything model (SAM) has been widely applied to various downstream tasks
 
 ## TodoList
 
-- [ ] Release model, training and testing code
+- [x] Release model code
+- [ ] Release training and testing code
 - [ ] model weights
 
 ## Prerequisites
