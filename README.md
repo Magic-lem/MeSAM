@@ -46,4 +46,4 @@ If you have any questions, please contact us via
 - liangf@stu.cqu.edu.cn
 
 ## Acknowledgement
-We appreciate the developers of [Segment Anything Model](https://github.com/facebookresearch/segment-anything) and the provider of the [Synapse multi-organ segmentation dataset](https://www.synapse.org/#!Synapse:syn3193805/wiki/217789). The code of MeSAM is built upon [SAMed](https://github.com/hitachinsk/SAMed), and we express our gratitude to these awesome projects.
+We appreciate the developers of [Segment Anything Model](https://github.com/facebookresearch/segment-anything). The code of MeSAM is built upon [SAMed](https://github.com/hitachinsk/SAMed), and we express our gratitude to these awesome projects.
